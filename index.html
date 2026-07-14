@@ -2,16 +2,11 @@
 <html lang="en">
 <head>
     <title>JD's Workshop | PPT Design, Digital Art & Website Designer in Bhubaneswar</title>
-
-<meta name="description" content="JD's Workshop offers PPT design, custom digital art, websites, and music design. DM on Instagram to order. Based in Bhubaneswar, India.">
-
-<meta name="keywords" content="PPT design Bhubaneswar, digital art India, custom art commissions, website designer India, JD Workshop">
-
-<meta name="author" content="JD">
+    <meta name="description" content="JD's Workshop offers PPT design, custom digital art, websites, and music design. DM on Instagram to order. Based in Bhubaneswar, India.">
+    <meta name="keywords" content="PPT design Bhubaneswar, digital art India, custom art commissions, website designer India, JD Workshop">
+    <meta name="author" content="JD">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="JD's Workshop Clone — Exported from UXMagic Copilot">
-    <title>JD's Workshop</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -208,6 +203,41 @@
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
       }
+
+      /* ── Custom Pop-out Lightbox Feature Classes ── */
+      .portfolio-zoom-img {
+        cursor: zoom-in;
+        transition: transform 0.5s ease;
+      }
+      .lightbox-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(7, 8, 13, 0.95);
+        backdrop-filter: blur(12px);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-center: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .lightbox-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .lightbox-img {
+        max-width: 90%;
+        max-height: 85vh;
+        object-fit: contain;
+        transform: scale(0.7) translateY(30px);
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 30px 60px -10px rgba(0, 224, 255, 0.2);
+      }
+      .lightbox-overlay.active .lightbox-img {
+        transform: scale(1) translateY(0);
+      }
     </style>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -238,7 +268,6 @@
             
             <main class="flex flex-col">
                 <!-- Hero Section -->
-
                 <section id="home" class="border-b border-border bg-gradient-to-b from-background via-card/40 to-background relative overflow-hidden">
                     <div class="mx-auto flex w-full max-w-7xl flex-col px-6 py-20 lg:px-10 lg:py-28 animate-fade-in-up">
                         <div class="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-border bg-card px-4 py-2 text-xs font-sans text-foreground shadow-md transition-transform duration-300 hover:scale-105">
@@ -312,11 +341,6 @@
                 </section>
                 
                 <!-- Selected Work Section -->
-
-<section class="hero" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
-  <img src="jd-logo.png" width="300" class="hero-logo" alt="JD's Workshop">
-</section>
-
                 <section id="work" class="border-b border-border bg-background/20 relative z-10">
                     <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
                         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -329,7 +353,7 @@
                         <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
                             <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md lg:col-span-5 group">
                                 <div class="overflow-hidden h-[520px] w-full flex items-center justify-center bg-secondary/30 p-2">
-                                    <img src="1.jpg" alt="Stencil artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    <img src="1.jpg" alt="Stencil artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                 </div>
                                 <div class="space-y-2 p-5 bg-card/90 relative z-10">
                                     <h3 class="text-lg font-heading font-semibold text-card-foreground">Stencil Artwork One</h3>
@@ -339,7 +363,7 @@
                             <div class="grid grid-cols-1 gap-6 lg:col-span-7 md:grid-cols-2">
                                 <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
-                                        <img src="2.jpg" alt="Portrait artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                        <img src="2.jpg" alt="Portrait artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
                                     <div class="space-y-2 p-5">
                                         <h3 class="text-lg font-heading font-semibold text-card-foreground">Portrait Study</h3>
@@ -348,7 +372,7 @@
                                 </article>
                                 <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
-                                        <img src="3.webp" alt="Character artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                        <img src="3.webp" alt="Character artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
                                     <div class="space-y-2 p-5">
                                         <h3 class="text-lg font-heading font-semibold text-card-foreground">Character Artwork</h3>
@@ -387,7 +411,7 @@
                                 
                                 <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
-                                        <img src="4.jpg" alt="Layout artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                        <img src="4.jpg" alt="Layout artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
                                     <div class="space-y-2 p-5">
                                         <h3 class="text-lg font-heading font-semibold text-card-foreground">Design Layout</h3>
@@ -396,11 +420,22 @@
                                 </article>
                                 <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
-                                        <img src="513979139_17866609890406922_7422948615827476821_n.jpg" alt="Poster design" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                        <img src="513979139_17866609890406922_7422948615827476821_n.jpg" alt="Poster design" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
                                     <div class="space-y-2 p-5">
                                         <h3 class="text-lg font-heading font-semibold text-card-foreground">Poster Piece</h3>
                                         <p class="text-sm font-sans text-muted-foreground">Poster-driven visual concept with layered motion-inspired energy.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Thalapathy Vijay Stencil Card -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="7.jpeg" alt="Thalapathy Vijay Stencil" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Thalapathy Vijay Stencil</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Finely detailed physical composition blending ambient workspace textures and high-contrast digital ink vectors.</p>
                                     </div>
                                 </article>
                             </div>
@@ -593,11 +628,13 @@
             </footer>
         </div>
     </div>
+
+    <!-- Active Pop-out Overlay Modal Container -->
+    <div id="lightbox-modal" class="lightbox-overlay">
+        <img id="lightbox-target-img" class="lightbox-img" src="" alt="Zoom View">
+    </div>
+
     <script src="script.js"></script>
-
-    <p style="display:none;">
-JD’s Workshop is a creative design service offering PPT presentations, digital art, website design, and music production in Bhubaneswar, India.
-</p>
-
+    <p style="display:none;">JD’s Workshop is a creative design service offering PPT presentations, digital art, website design, and music production in Bhubaneswar, India.</p>
 </body>
 </html>
