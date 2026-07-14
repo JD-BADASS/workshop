@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JD's Workshop Clone — Exported from UXMagic Copilot">
+    <title>JD's Workshop Clone</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Poppins:wght@100..900&amp;family=Fira+Code:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    
+    <!-- Runtime Scripts & Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    
+    <!-- Tailwind v4 Runtime Engine Theme - Keep Inline -->
+    <style type="text/tailwindcss">
+      @import "tailwindcss";
+      @theme inline {
+        --color-background: var(--background);
+        --color-foreground: var(--foreground);
+        --color-primary: var(--primary);
+        --color-primary-foreground: var(--primary-foreground);
+        --color-secondary: var(--secondary);
+        --color-secondary-foreground: var(--secondary-foreground);
+        --color-tertiary: var(--tertiary);
+        --color-muted: var(--muted);
+        --color-muted-foreground: var(--muted-foreground);
+        --color-accent: var(--accent);
+        --color-destructive: var(--destructive);
+        --color-card: var(--card);
+        --color-card-foreground: var(--card-foreground);
+        --color-border: var(--border);
+        --color-input: var(--input);
+        --color-ring: var(--ring);
+        --radius-sm: calc(var(--radius) - 4px);
+        --radius-md: calc(var(--radius) - 2px);
+        --radius-lg: var(--radius);
+        --font-family-sans: var(--font-sans);
+        --font-family-heading: var(--font-heading);
+        --font-family-mono: var(--font-mono);
+      }
+      :root {
+        --background: #07080d;
+        --foreground: #ffffff;
+        --primary: #00e0ff;
+        --primary-foreground: #111111;
+        --secondary: #1a1c23;
+        --secondary-foreground: #ffffff;
+        --tertiary: #ff00c8;
+        --muted: #161820;
+        --muted-foreground: #a1a1aa;
+        --accent: #ff00c8;
+        --accent-foreground: #ffffff;
+        --card: #12131a;
+        --card-foreground: #ffffff;
+        --destructive: #ef4444;
+        --border: #222530;
+        --input: #222530;
+        --ring: #00e0ff;
+        --radius: 0.75rem;
+        --font-sans: sans-serif;
+        --font-heading: Satoshi,sans-serif;
+        --font-mono: JetBrains Mono, monospace;
+        --shadow-offset-x: 0;
+        --shadow-offset-y: 10;
+        --shadow-blur: 30;
+        --shadow-spread: -8;
+        --shadow-color: rgba(15, 23, 42, 0.12);
+      }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="overflow-x-hidden select-none">
+    
+    <!-- Particle Canvas Layer -->
+    <div class="particle-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div data-page="jd-s-workshop-clone">
+        <div class="min-h-screen w-full bg-transparent flex flex-col relative z-10">
+            
+            <!-- Header -->
+            <header class="w-full border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
+                <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+                    <a href="#home" class="text-base font-heading font-semibold text-foreground tracking-wider group">
+                        JD's <span class="text-primary group-hover:text-accent transition-colors duration-300">Workshop</span>
+                    </a>
+                    <nav class="flex items-center gap-8 text-sm font-sans text-foreground">
+                        <a href="#services" class="transition nav-link hover:text-primary">Services</a>
+                        <a href="#work" class="transition nav-link hover:text-primary">Work</a>
+                        <a href="#contact" class="transition nav-link hover:text-primary">Contact</a>
+                    </nav>
+                </div>
+            </header>
+            
+            <main class="flex flex-col">
+                <!-- Hero Section -->
+                <section id="home" class="border-b border-border bg-gradient-to-b from-background via-card/40 to-background relative overflow-hidden">
+                    <div class="mx-auto flex w-full max-w-7xl flex-col px-6 py-20 lg:px-10 lg:py-28 animate-fade-in-up">
+                        <div class="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-border bg-card px-4 py-2 text-xs font-sans text-foreground shadow-md transition-transform duration-300 hover:scale-105">
+                            <span class="h-2.5 w-2.5 rounded-full bg-primary animate-pulse"></span>
+                            <span>Open for creative commissions</span>
+                        </div>
+                        <div class="max-w-5xl space-y-8">
+                            <h1 class="max-w-5xl text-6xl font-heading font-bold leading-none tracking-tight text-foreground lg:text-[82px]">
+                                Creative Ideas &amp; Designs , crafted by <span class="bg-gradient-to-r from-primary via-accent to-tertiary bg-clip-text text-transparent drop-shadow-sm font-black">JD</span>
+                            </h1>
+                            <p class="max-w-2xl text-sm font-sans leading-6 text-muted-foreground">Designs, artworks, websites, presentations, sketches, and sound ideas shaped into memorable digital experiences.</p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#contact" class="magnet-btn inline-flex min-h-11 items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-accent px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all duration-300 hover:shadow-primary/20">Start Project<iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon></a>
+                                <a href="#work" class="magnet-btn inline-flex min-h-11 items-center rounded-lg border border-border bg-background px-6 py-3 text-sm font-semibold text-foreground transition-all duration-300 hover:bg-card">View Work</a>
+                            </div>
+                            <div class="flex flex-wrap gap-3 pt-4">
+                                <div class="rounded-full border border-border bg-card/60 px-4 py-2 text-xs font-sans text-foreground hover:border-primary transition-colors cursor-default">Presentation design</div>
+                                <div class="rounded-full border border-border bg-card/60 px-4 py-2 text-xs font-sans text-foreground hover:border-accent transition-colors cursor-default">Custom digital art</div>
+                                <div class="rounded-full border border-border bg-card/60 px-4 py-2 text-xs font-sans text-foreground hover:border-tertiary transition-colors cursor-default">Websites</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Services Section -->
+                <section id="services" class="border-b border-border bg-background/40 backdrop-blur-sm relative z-10">
+                    <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
+                        <div class="max-w-3xl space-y-4">
+                            <p class="text-xs font-sans uppercase tracking-[0.3em] text-muted-foreground animate-pulse">What we do</p>
+                            <h2 class="text-4xl font-heading font-semibold leading-tight text-foreground lg:text-5xl">A studio toolkit for visual ideas that need impact.</h2>
+                            <p class="max-w-2xl text-sm font-sans leading-6 text-muted-foreground">Hey! I’m JD — a creative designer and artist blending details, dedication, and a sharp digital finish across every project.</p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            <article class="interactive-card flex h-full flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-md">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-background text-primary"><iconify-icon icon="lucide:presentation" class="text-xl icon-spin-hover"></iconify-icon></div>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">PPT Presentation Design</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">Professional, creative, high-impact slides for school, business, and pitch moments.</p>
+                                </div>
+                            </article>
+                            <article class="interactive-card flex h-full flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-md">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-background text-accent"><iconify-icon icon="lucide:palette" class="text-xl icon-spin-hover"></iconify-icon></div>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Custom Digital Art</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">Stylized illustrations, posters, and visual pieces built to carry personality.</p>
+                                </div>
+                            </article>
+                            <article class="interactive-card flex h-full flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-md">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-background text-primary"><iconify-icon icon="lucide:monitor" class="text-xl icon-spin-hover"></iconify-icon></div>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Website Design</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">Modern, interactive landing pages and portfolio websites with a polished feel.</p>
+                                </div>
+                            </article>
+                            <article class="interactive-card flex h-full flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-md">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-background text-accent"><iconify-icon icon="lucide:file-image" class="text-xl icon-spin-hover"></iconify-icon></div>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Poster Design</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">Promotional graphics and visuals designed to land with clarity and impact.</p>
+                                </div>
+                            </article>
+                            <article class="interactive-card flex h-full flex-col gap-5 rounded-xl border border-border bg-card p-6 shadow-md">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-background text-primary"><iconify-icon icon="lucide:music-4" class="text-xl icon-spin-hover"></iconify-icon></div>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Music Composition</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">Original sound sketches and mood-building audio pieces created for identity and atmosphere.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Selected Work Section -->
+                <section id="work" class="border-b border-border bg-background/20 relative z-10">
+                    <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
+                        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                            <div class="max-w-3xl space-y-4">
+                                <p class="text-xs font-sans uppercase tracking-[0.3em] text-muted-foreground animate-pulse">Selected work</p>
+                                <h2 class="text-4xl font-heading font-semibold leading-tight text-foreground lg:text-5xl">A sharper look at what we can make.</h2>
+                            </div>
+                            <p class="max-w-2xl text-sm font-sans leading-6 text-muted-foreground">Artwork, brand pieces, and digital experiences — built to feel memorable, not ordinary.</p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+                            <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md lg:col-span-5 group">
+                                <div class="overflow-hidden h-[520px] w-full flex items-center justify-center bg-secondary/30 p-2">
+                                    <img src="1.jpg" alt="Stencil artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                </div>
+                                <div class="space-y-2 p-5 bg-card/90 relative z-10">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Stencil Artwork One</h3>
+                                    <p class="text-sm font-sans text-muted-foreground">Custom stencil-led composition with graphic contrast and attitude.</p>
+                                </div>
+                            </article>
+                            <div class="grid grid-cols-1 gap-6 lg:col-span-7 md:grid-cols-2">
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="2.jpg" alt="Portrait artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Portrait Study</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Digital illustration balancing texture, expression, and strong framing.</p>
+                                    </div>
+                                </article>
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="3.webp" alt="Character artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Character Artwork</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">A stylized visual piece created to feel vivid, polished, and memorable.</p>
+                                    </div>
+                                </article>
+                                
+                                <!-- Presentation Motion Video Card with Custom Controls -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md md:col-span-2 relative group flex flex-col justify-end min-h-[300px]">
+                                    <div class="absolute inset-0 bg-background/20 z-0">
+                                        <video src="https://framerusercontent.com/assets/KoOegvSc0AXCzxJx86wDDAky4Kg.mp4" class="h-full w-full object-cover" loop playsinline preload="metadata"></video>
+                                    </div>
+                                    
+                                    <!-- Custom Controls HUD -->
+                                    <div class="z-10 bg-gradient-to-t from-background via-background/90 to-transparent p-5 pt-16 space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <div class="space-y-1">
+                                                <h3 class="text-lg font-heading font-semibold text-card-foreground">Presentation Motion</h3>
+                                                <p class="text-sm font-sans text-muted-foreground">Video showcase demonstrating pacing, storytelling, and motion-led presentation work.</p>
+                                            </div>
+                                            <!-- Dynamic Eq Bar element -->
+                                            <div class="eq-visualizer hidden flex items-end gap-[3px] h-6 px-2">
+                                                <span class="eq-bar w-[3px] bg-primary rounded-full"></span>
+                                                <span class="eq-bar w-[3px] bg-accent rounded-full" style="animation-delay: 0.15s"></span>
+                                                <span class="eq-bar w-[3px] bg-tertiary rounded-full" style="animation-delay: 0.3s"></span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-4 bg-secondary/80 backdrop-blur-md px-4 py-2 rounded-lg border border-border">
+                                            <button class="custom-video-play text-sm font-semibold text-primary cursor-pointer transition hover:text-white flex items-center gap-1">
+                                                <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
+                                            </button>
+                                            <div class="flex items-center gap-2 ml-auto">
+                                                <iconify-icon icon="lucide:volume-2" class="text-muted-foreground text-base"></iconify-icon>
+                                                <input type="range" min="0" max="1" step="0.05" value="0.8" class="custom-volume-slider w-20 accent-primary bg-muted rounded-lg appearance-none h-1 cursor-pointer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="4.jpg" alt="Layout artwork" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Design Layout</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Editorial composition and visual placement designed for strong first impact.</p>
+                                    </div>
+                                </article>
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="513979139_17866609890406922_7422948615827476821_n.jpg" alt="Poster design" class="h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Poster Piece</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Poster-driven visual concept with layered motion-inspired energy.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Music Showcase Section -->
+                <section class="border-b border-border bg-background/40 relative z-10">
+                    <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
+                        <div class="max-w-3xl space-y-4">
+                            <p class="text-xs font-sans uppercase tracking-[0.3em] text-muted-foreground animate-pulse">Original sound</p>
+                            <h2 class="text-4xl font-heading font-semibold leading-tight text-foreground lg:text-5xl">BGM experiments made for mood, motion, and identity.</h2>
+                            <p class="max-w-2xl text-sm font-sans leading-6 text-muted-foreground">Four audio-led pieces uploaded as videos here, ready to preview directly from the page.</p>
+                        </div>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            
+                            <!-- Track 1 -->
+                            <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
+                                <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
+                                    <div class="flex items-center gap-3">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Masters Anthem</h3>
+                                        <div class="eq-visualizer hidden flex items-end gap-[2px] h-4">
+                                            <span class="eq-bar w-[2px] bg-primary rounded-full"></span>
+                                            <span class="eq-bar w-[2px] bg-accent rounded-full" style="animation-delay: 0.1s"></span>
+                                            <span class="eq-bar w-[2px] bg-tertiary rounded-full" style="animation-delay: 0.2s"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-secondary/80 border border-border px-3 py-1.5 rounded-full backdrop-blur-sm">
+                                        <button class="custom-video-play text-xs font-semibold text-primary cursor-pointer flex items-center gap-1">
+                                            <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
+                                        </button>
+                                        <div class="h-3 w-[1px] bg-border"></div>
+                                        <div class="flex items-center gap-1">
+                                            <iconify-icon icon="lucide:volume-2" class="text-muted-foreground text-xs"></iconify-icon>
+                                            <input type="range" min="0" max="1" step="0.05" value="0.8" class="custom-volume-slider w-14 accent-primary appearance-none h-1 bg-muted rounded cursor-pointer">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
+                                    <video src="https://framerusercontent.com/assets/OOc0pR1mFBPRuz2KmcxDNRxxI.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                </div>
+                            </article>
+                            
+                            <!-- Track 2 -->
+                            <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
+                                <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
+                                    <div class="flex items-center gap-3">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Late Night Motion</h3>
+                                        <div class="eq-visualizer hidden flex items-end gap-[2px] h-4">
+                                            <span class="eq-bar w-[2px] bg-primary rounded-full"></span>
+                                            <span class="eq-bar w-[2px] bg-accent rounded-full" style="animation-delay: 0.1s"></span>
+                                            <span class="eq-bar w-[2px] bg-tertiary rounded-full" style="animation-delay: 0.2s"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-secondary/80 border border-border px-3 py-1.5 rounded-full backdrop-blur-sm">
+                                        <button class="custom-video-play text-xs font-semibold text-primary cursor-pointer flex items-center gap-1">
+                                            <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
+                                        </button>
+                                        <div class="h-3 w-[1px] bg-border"></div>
+                                        <div class="flex items-center gap-1">
+                                            <iconify-icon icon="lucide:volume-2" class="text-muted-foreground text-xs"></iconify-icon>
+                                            <input type="range" min="0" max="1" step="0.05" value="0.8" class="custom-volume-slider w-14 accent-primary appearance-none h-1 bg-muted rounded cursor-pointer">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
+                                    <video src="https://framerusercontent.com/assets/lUJJ25uAGrNy27z6JbOIrYxqrmw.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                </div>
+                            </article>
+                            
+                            <!-- Track 3 -->
+                            <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
+                                <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
+                                    <div class="flex items-center gap-3">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Sketchbook Echo</h3>
+                                        <div class="eq-visualizer hidden flex items-end gap-[2px] h-4">
+                                            <span class="eq-bar w-[2px] bg-primary rounded-full"></span>
+                                            <span class="eq-bar w-[2px] bg-accent rounded-full" style="animation-delay: 0.1s"></span>
+                                            <span class="eq-bar w-[2px] bg-tertiary rounded-full" style="animation-delay: 0.2s"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-secondary/80 border border-border px-3 py-1.5 rounded-full backdrop-blur-sm">
+                                        <button class="custom-video-play text-xs font-semibold text-primary cursor-pointer flex items-center gap-1">
+                                            <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
+                                        </button>
+                                        <div class="h-3 w-[1px] bg-border"></div>
+                                        <div class="flex items-center gap-1">
+                                            <iconify-icon icon="lucide:volume-2" class="text-muted-foreground text-xs"></iconify-icon>
+                                            <input type="range" min="0" max="1" step="0.05" value="0.8" class="custom-volume-slider w-14 accent-primary appearance-none h-1 bg-muted rounded cursor-pointer">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
+                                    <video src="https://framerusercontent.com/assets/lzGwJ8oLNzXwAom73FCDUoUhbUA.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                </div>
+                            </article>
+                            
+                            <!-- Track 4 -->
+                            <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
+                                <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
+                                    <div class="flex items-center gap-3">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Identity Pulse</h3>
+                                        <div class="eq-visualizer hidden flex items-end gap-[2px] h-4">
+                                            <span class="eq-bar w-[2px] bg-primary rounded-full"></span>
+                                            <span class="eq-bar w-[2px] bg-accent rounded-full" style="animation-delay: 0.1s"></span>
+                                            <span class="eq-bar w-[2px] bg-tertiary rounded-full" style="animation-delay: 0.2s"></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3 bg-secondary/80 border border-border px-3 py-1.5 rounded-full backdrop-blur-sm">
+                                        <button class="custom-video-play text-xs font-semibold text-primary cursor-pointer flex items-center gap-1">
+                                            <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
+                                        </button>
+                                        <div class="h-3 w-[1px] bg-border"></div>
+                                        <div class="flex items-center gap-1">
+                                            <iconify-icon icon="lucide:volume-2" class="text-muted-foreground text-xs"></iconify-icon>
+                                            <input type="range" min="0" max="1" step="0.05" value="0.8" class="custom-volume-slider w-14 accent-primary appearance-none h-1 bg-muted rounded cursor-pointer">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
+                                    <video src="https://framerusercontent.com/assets/S1mxj6gkxYdDey8GoxxsUNIuQ.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                </div>
+                            </article>
+                            
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Methodology Section -->
+                <section class="border-b border-border bg-background/20 relative z-10">
+                    <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
+                        <div class="max-w-4xl space-y-4">
+                            <h2 class="text-4xl font-heading font-semibold leading-tight text-foreground lg:text-5xl">From idea to finished visual, without losing the spark.</h2>
+                        </div>
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+                            <article class="interactive-card rounded-xl border border-border bg-card p-6 shadow-md relative overflow-hidden group">
+                                <p class="mb-5 text-sm font-sans font-semibold text-primary transition-transform group-hover:scale-125 duration-300 origin-left">01</p>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Shape the idea</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">We lock the goal, mood, references, and the exact result you need before designing.</p>
+                                </div>
+                            </article>
+                            <article class="interactive-card rounded-xl border border-border bg-card p-6 shadow-md relative overflow-hidden group">
+                                <p class="mb-5 text-sm font-sans font-semibold text-accent transition-transform group-hover:scale-125 duration-300 origin-left">02</p>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Craft the detail</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">Visuals are refined with sharp composition, color, polish, and a memorable finish.</p>
+                                </div>
+                            </article>
+                            <article class="interactive-card rounded-xl border border-border bg-card p-6 shadow-md relative overflow-hidden group">
+                                <p class="mb-5 text-sm font-sans font-semibold text-tertiary transition-transform group-hover:scale-125 duration-300 origin-left">03</p>
+                                <div class="space-y-3">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Deliver ready</h3>
+                                    <p class="text-sm font-sans leading-6 text-muted-foreground">Final files arrive clean and usable, ready to publish, present, print, or share.</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Contact Block Section -->
+                <section id="contact" class="border-b border-border bg-background relative z-10">
+                    <div class="mx-auto max-w-7xl px-6 py-20 lg:px-10 scroll-trigger">
+                        <div class="mx-auto max-w-4xl rounded-[32px] border border-border bg-card px-8 py-12 text-center shadow-md lg:px-12 lg:py-16 glowing-border">
+                            <div class="space-y-5">
+                                <p class="text-xs font-sans uppercase tracking-[0.3em] text-muted-foreground animate-pulse">Start a project</p>
+                                <h2 class="text-4xl font-heading font-semibold leading-tight text-card-foreground lg:text-5xl">Let's make something people remember.</h2>
+                                <p class="mx-auto max-w-2xl text-sm font-sans leading-6 text-muted-foreground">Let’s build visuals that feel thoughtful, polished, and worth remembering.</p>
+                            </div>
+                            <div class="mt-8 flex justify-center">
+                                <a href="https://www.instagram.com/jd_badass_64/" target="_blank" rel="noopener noreferrer" class="magnet-btn inline-flex min-h-11 items-center rounded-lg bg-gradient-to-r from-primary via-accent to-tertiary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md transition transform hover:scale-[1.05] hover:shadow-accent/40 duration-300">DM me your idea + I’ll reply with price & concept.</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            
+            <!-- Footer -->
+            <footer class="bg-background/80 relative z-10 border-t border-border">
+                <div class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-10 text-sm font-sans text-muted-foreground lg:flex-row lg:items-center lg:justify-between lg:px-10">
+                    <p>© JD’s Workshop</p>
+                    <div class="flex flex-wrap gap-6">
+                        <a href="#services" class="transition hover:text-primary nav-link">Design</a>
+                        <a href="#work" class="transition hover:text-primary nav-link">Art</a>
+                        <a href="#work" class="transition hover:text-primary nav-link">Website</a>
+                        <a href="#work" class="transition hover:text-primary nav-link">Music</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
