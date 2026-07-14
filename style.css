@@ -1,0 +1,201 @@
+/*
+ * Minimalist Contact Page Portfolio — Shared Styles
+ * Generated with Custom Immersive Dynamic Animations
+ */
+
+:root {
+  --background: #07080d;
+  --foreground: #ffffff;
+  --primary: #00e0ff;
+  --primary-foreground: #111111;
+  --secondary: #1a1c23;
+  --secondary-foreground: #ffffff;
+  --tertiary: #ff00c8;
+  --muted: #161820;
+  --muted-foreground: #a1a1aa;
+  --accent: #ff00c8;
+  --accent-foreground: #ffffff;
+  --card: #12131a;
+  --card-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: #222530;
+  --input: #222530;
+  --ring: #00e0ff;
+  --radius: 0.75rem;
+  --font-sans: sans-serif;
+  --font-heading: Satoshi,sans-serif;
+  --font-mono: JetBrains Mono, monospace;
+  --shadow-color: rgba(0, 224, 255, 0.08);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* ── CRAZY BACKGROUND ANIMATIONS ── */
+.particle-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.25;
+  mix-blend-mode: screen;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--primary);
+  top: -10%;
+  right: -5%;
+  animation: floatOrb 22s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--tertiary);
+  bottom: -15%;
+  left: -10%;
+  animation: floatOrb 28s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.15); }
+  100% { transform: translate(-40px, 80px) scale(0.9); }
+}
+
+/* ── SERVICE & PORTFOLIO CARDS ENGINE ── */
+.interactive-card {
+  transition: all 400.ms cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  will-change: transform, box-shadow;
+}
+
+.interactive-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--primary), var(--accent), transparent);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 400ms ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  border-color: rgba(0, 224, 255, 0.4);
+  box-shadow: 0 20px 40px -15px var(--shadow-color);
+}
+
+.interactive-card:hover::after {
+  opacity: 1;
+}
+
+/* ── TEXT INTERACTION ANIMATIONS ── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.icon-spin-hover {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.interactive-card:hover .icon-spin-hover {
+  transform: rotate(15deg) scale(1.2);
+}
+
+/* ── EQUALIZER AUDIO RAYS ── */
+.eq-bar {
+  height: 2px;
+  animation: bounceEq 0.6s ease infinite alternate;
+  transform-origin: bottom;
+}
+
+@keyframes bounceEq {
+  0% { transform: scaleY(1); height: 15%; }
+  100% { transform: scaleY(1); height: 100%; }
+}
+
+/* ── INTRO ENTER TRANSITIONS ── */
+.animate-fade-in-up {
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll Trigger Hide Base */
+.scroll-trigger {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.scroll-trigger.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom glowing edge border for contact callouts */
+.glowing-border {
+  position: relative;
+}
+.glowing-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 34px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--tertiary), var(--primary));
+  background-size: 300% 300%;
+  z-index: -1;
+  animation: flowGlow 6s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes flowGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
