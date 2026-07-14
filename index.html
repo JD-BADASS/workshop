@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
     
-    <!-- Tailwind v4 Runtime Engine Theme - Keep Inline -->
+    <!-- Tailwind v4 Runtime Engine Theme + Animation Core Styles -->
     <style type="text/tailwindcss">
       @import "tailwindcss";
       @theme inline {
@@ -71,10 +71,140 @@
         --shadow-spread: -8;
         --shadow-color: rgba(15, 23, 42, 0.12);
       }
+
+      /* ── Background Floating Orbs ── */
+      .particle-container {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.25;
+        mix-blend-mode: screen;
+      }
+      .orb-1 {
+        width: 400px;
+        height: 400px;
+        background: #00e0ff;
+        top: -10%;
+        right: -5%;
+        animation: floatOrb 22s infinite alternate ease-in-out;
+      }
+      .orb-2 {
+        width: 500px;
+        height: 500px;
+        background: #ff00c8;
+        bottom: -15%;
+        left: -10%;
+        animation: floatOrb 28s infinite alternate-reverse ease-in-out;
+      }
+      @keyframes floatOrb {
+        0% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(60px, -40px) scale(1.15); }
+        100% { transform: translate(-40px, 80px) scale(0.9); }
+      }
+
+      /* ── Interactive Cyber Glow Cards ── */
+      .interactive-card {
+        transition: all 400ms cubic-bezier(0.25, 1, 0.5, 1);
+        position: relative;
+        will-change: transform, box-shadow;
+      }
+      .interactive-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        border-color: rgba(0, 224, 255, 0.4);
+        box-shadow: 0 20px 40px -15px rgba(0, 224, 255, 0.15);
+      }
+
+      /* ── Custom Animated Text Links ── */
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 1.5px;
+        bottom: -4px;
+        left: 0;
+        background: linear-gradient(to right, #00e0ff, #ff00c8);
+        transform-origin: bottom right;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+
+      .icon-spin-hover {
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .interactive-card:hover .icon-spin-hover {
+        transform: rotate(15deg) scale(1.2);
+      }
+
+      /* ── Live Audio Graphic Visualizer Equalizer ── */
+      .eq-bar {
+        height: 2px;
+        animation: bounceEq 0.6s ease infinite alternate;
+        transform-origin: bottom;
+      }
+      @keyframes bounceEq {
+        0% { transform: scaleY(1); height: 15%; }
+        100% { transform: scaleY(1); height: 100%; }
+      }
+
+      /* ── Section Fade Animations ── */
+      .animate-fade-in-up {
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .scroll-trigger {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+      .scroll-trigger.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .glowing-border {
+        position: relative;
+      }
+      .glowing-border::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 34px;
+        background: linear-gradient(90deg, #00e0ff, #ff00c8, #ff00c8, #00e0ff);
+        background-size: 300% 300%;
+        z-index: -1;
+        animation: flowGlow 6s linear infinite;
+        opacity: 0.3;
+      }
+      @keyframes flowGlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
     </style>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="overflow-x-hidden select-none">
+<body class="overflow-x-hidden select-none bg-[#07080d]">
     
     <!-- Particle Canvas Layer -->
     <div class="particle-container">
@@ -86,7 +216,7 @@
         <div class="min-h-screen w-full bg-transparent flex flex-col relative z-10">
             
             <!-- Header -->
-            <header class="w-full border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
+            <header class="w-full border-b border-border bg-background/85 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
                 <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
                     <a href="#home" class="text-base font-heading font-semibold text-foreground tracking-wider group">
                         JD's <span class="text-primary group-hover:text-accent transition-colors duration-300">Workshop</span>
@@ -213,20 +343,17 @@
                                     </div>
                                 </article>
                                 
-                                <!-- Presentation Motion Video Card with Custom Controls -->
+                                <!-- Presentation Video Card -->
                                 <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md md:col-span-2 relative group flex flex-col justify-end min-h-[300px]">
                                     <div class="absolute inset-0 bg-background/20 z-0">
                                         <video src="https://framerusercontent.com/assets/KoOegvSc0AXCzxJx86wDDAky4Kg.mp4" class="h-full w-full object-cover" loop playsinline preload="metadata"></video>
                                     </div>
-                                    
-                                    <!-- Custom Controls HUD -->
                                     <div class="z-10 bg-gradient-to-t from-background via-background/90 to-transparent p-5 pt-16 space-y-4">
                                         <div class="flex items-center justify-between">
                                             <div class="space-y-1">
                                                 <h3 class="text-lg font-heading font-semibold text-card-foreground">Presentation Motion</h3>
                                                 <p class="text-sm font-sans text-muted-foreground">Video showcase demonstrating pacing, storytelling, and motion-led presentation work.</p>
                                             </div>
-                                            <!-- Dynamic Eq Bar element -->
                                             <div class="eq-visualizer hidden flex items-end gap-[3px] h-6 px-2">
                                                 <span class="eq-bar w-[3px] bg-primary rounded-full"></span>
                                                 <span class="eq-bar w-[3px] bg-accent rounded-full" style="animation-delay: 0.15s"></span>
@@ -301,7 +428,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
-                                    <video src="https://framerusercontent.com/assets/OOc0pR1mFBPRuz2KmcxDNRxxI.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                    <video src="https://framerusercontent.com/assets/OOc0pR1mFBPRuz2KmcxDNRxxI.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover"></video>
                                 </div>
                             </article>
                             
@@ -328,7 +455,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
-                                    <video src="https://framerusercontent.com/assets/lUJJ25uAGrNy27z6JbOIrYxqrmw.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                    <video src="https://framerusercontent.com/assets/lUJJ25uAGrNy27z6JbOIrYxqrmw.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover"></video>
                                 </div>
                             </article>
                             
@@ -355,7 +482,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
-                                    <video src="https://framerusercontent.com/assets/lzGwJ8oLNzXwAom73FCDUoUhbUA.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                    <video src="https://framerusercontent.com/assets/lzGwJ8oLNzXwAom73FCDUoUhbUA.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover"></video>
                                 </div>
                             </article>
                             
@@ -382,7 +509,7 @@
                                     </div>
                                 </div>
                                 <div class="relative overflow-hidden rounded-lg bg-secondary border border-border aspect-video max-h-48 mt-2">
-                                    <video src="https://framerusercontent.com/assets/S1mxj6gkxYdDey8GoxxsUNIuQ.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"></video>
+                                    <video src="https://framerusercontent.com/assets/S1mxj6gkxYdDey8GoxxsUNIuQ.mp4" loop playsinline preload="metadata" class="w-full h-full object-cover"></video>
                                 </div>
                             </article>
                             
