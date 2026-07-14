@@ -1,5 +1,5 @@
 // Minimalist Contact Page Portfolio — Shared Script
-// Added Immersive Motion Tracking & Visual EQ Automation Hooks
+// Added Immersive Motion Tracking, Visual EQ Automation Hooks & Pop-out Lightbox Modal
 
 document.addEventListener('DOMContentLoaded', function () {
   
@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.15 });
 
   revealSections.forEach(section => revealObserver.observe(section));
-  // Manually force reveal sections if observer delayed
   setTimeout(() => {
     revealSections.forEach(s => s.classList.add('visible'));
   }, 400);
@@ -62,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     if (!video) return;
 
-    // Secure measures: Block unwanted native actions completely
     video.controls = false;
     video.removeAttribute('controls');
     video.setAttribute('controlsList', 'nodownload noplaybackspeed');
@@ -71,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
     video.load();
     video.addEventListener('contextmenu', e => e.preventDefault());
 
-    // Play/Pause interaction hooks
     if (playBtn) {
       const playIcon = playBtn.querySelector('.play-icon');
       const label = playBtn.querySelector('.label');
@@ -80,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         
         if (video.paused || video.ended) {
-          // Sleep active streams to prioritize user selection focus
           document.querySelectorAll('video').forEach(v => {
             if (v !== video) {
               v.pause();
@@ -99,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           });
 
-          // Play chosen track stream
           video.play().then(() => {
             if (playIcon) playIcon.setAttribute('icon', 'lucide:pause');
             if (label) label.textContent = 'Pause';
@@ -115,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    // Volume level logic slider mapping
     if (volumeSlider) {
       video.volume = volumeSlider.value;
       volumeSlider.addEventListener('input', function () {
@@ -123,6 +117,29 @@ document.addEventListener('DOMContentLoaded', function () {
         video.muted = (parseFloat(this.value) === 0);
       });
     }
+  });
+
+  // 6. Immersive Image Pop-out Lightbox Engine Implementation
+  const lightboxModal = document.getElementById('lightbox-modal');
+  const lightboxImg = document.getElementById('lightbox-target-img');
+  const zoomableImages = document.querySelectorAll('.portfolio-zoom-img');
+
+  zoomableImages.forEach(img => {
+    img.addEventListener('click', function() {
+      // Set the path target source to match the clicked image asset path
+      lightboxImg.src = this.src;
+      lightboxImg.alt = this.alt;
+      // Trigger smooth fade and elastic spring transition rules
+      lightboxModal.classList.add('active');
+    });
+  });
+
+  // Click anywhere outside the image frame on the dark backdrop to slide it back down safely
+  lightboxModal.addEventListener('click', function() {
+    lightboxModal.classList.remove('active');
+    setTimeout(() => {
+      lightboxImg.src = ""; // Flush memory stream parameters
+    }, 400);
   });
 
 });
