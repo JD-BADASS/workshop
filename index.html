@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>JD & LEO DAS's Workshop | PPT Design, Digital Art & Website Designer in Bhubaneswar</title>
+    <title>JD's Workshop | PPT Design, Digital Art & Website Designer in Bhubaneswar</title>
     <meta name="description" content="JD's Workshop offers PPT design, custom digital art, websites, and music design. DM on Instagram to order. Based in Bhubaneswar, India.">
     <meta name="keywords" content="PPT design Bhubaneswar, digital art India, custom art commissions, website designer India, JD Workshop">
     <meta name="author" content="JD">
@@ -217,7 +217,7 @@
         z-index: 100;
         display: flex;
         align-items: center;
-        justify-center: center;
+        justify-content: center;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -237,6 +237,15 @@
       }
       .lightbox-overlay.active .lightbox-img {
         transform: scale(1) translateY(0);
+      }
+
+      /* ── Horizontal Gallery Custom Hide scrollbar utility styles ── */
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
     </style>
     <link rel="stylesheet" href="styles.css">
@@ -340,7 +349,14 @@
                     </div>
                 </section>
                 
-                <!-- Selected Work Section -->
+                <!-- Highly Readable Scaled Up Brand Logo Mid-Section -->
+                <section class="w-full flex justify-center items-center py-10 border-b border-border bg-background/20 relative z-10 scroll-trigger">
+                    <div class="max-w-[280px] px-4 transition-all duration-300 hover:scale-105">
+                        <img src="jd-logo.png" alt="JD's Workshop Emblem" class="w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(0,224,255,0.3)]">
+                    </div>
+                </section>
+
+                <!-- Selected Work Section[cite: 12] -->
                 <section id="work" class="border-b border-border bg-background/20 relative z-10">
                     <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
                         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -348,20 +364,33 @@
                                 <p class="text-xs font-sans uppercase tracking-[0.3em] text-muted-foreground animate-pulse">Selected work</p>
                                 <h2 class="text-4xl font-heading font-semibold leading-tight text-foreground lg:text-5xl">A sharper look at what we can make.</h2>
                             </div>
-                            <p class="max-w-2xl text-sm font-sans leading-6 text-muted-foreground">Artwork, brand pieces, and digital experiences — built to feel memorable, not ordinary.</p>
+                            <p class="max-w-2xl text-sm font-sans leading-6 text-muted-foreground">Browse the gallery below using the side controls or by swiping directly. Click to pop full scale.</p>
                         </div>
-                        <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
-                            <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md lg:col-span-5 group">
-                                <div class="overflow-hidden h-[520px] w-full flex items-center justify-center bg-secondary/30 p-2">
-                                    <img src="1.jpg" alt="Stencil artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
-                                </div>
-                                <div class="space-y-2 p-5 bg-card/90 relative z-10">
-                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Stencil Artwork One</h3>
-                                    <p class="text-sm font-sans text-muted-foreground">Custom stencil-led composition with graphic contrast and attitude.</p>
-                                </div>
-                            </article>
-                            <div class="grid grid-cols-1 gap-6 lg:col-span-7 md:grid-cols-2">
-                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                        
+                        <!-- Swipe Gallery Structural Layout Container[cite: 12] -->
+                        <div class="relative w-full group/gallery">
+                            
+                            <!-- Left Navigation Arrow[cite: 12] -->
+                            <button id="gallery-left-arrow" class="absolute left-2 top-[40%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur-md text-primary opacity-0 group-hover/gallery:opacity-100 transition-all duration-300 hover:bg-muted hover:text-white cursor-pointer shadow-lg shadow-background/50">
+                                <iconify-icon icon="lucide:chevron-left" class="text-2xl"></iconify-icon>
+                            </button>
+
+                            <!-- Swipe Sideways Horizontal Gallery Wrapper Container[cite: 12] -->
+                            <div id="horizontal-swipe-gallery" class="flex overflow-x-auto gap-6 pb-6 pt-2 hide-scrollbar snap-x snap-mandatory scroll-smooth">
+                                
+                                <!-- Card 1[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="1.jpg" alt="Stencil artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5 bg-card/90 relative z-10">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Stencil Artwork One</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Custom stencil-led composition with graphic contrast and attitude.</p>
+                                    </div>
+                                </article>
+                                
+                                <!-- Card 2[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
                                         <img src="2.jpg" alt="Portrait artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
@@ -370,7 +399,9 @@
                                         <p class="text-sm font-sans text-muted-foreground">Digital illustration balancing texture, expression, and strong framing.</p>
                                     </div>
                                 </article>
-                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                
+                                <!-- Card 3[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
                                         <img src="3.webp" alt="Character artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
@@ -380,36 +411,8 @@
                                     </div>
                                 </article>
                                 
-                                <!-- Presentation Video Card -->
-                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md md:col-span-2 relative group flex flex-col justify-end min-h-[300px]">
-                                    <div class="absolute inset-0 bg-background/20 z-0">
-                                        <video src="https://framerusercontent.com/assets/KoOegvSc0AXCzxJx86wDDAky4Kg.mp4" class="h-full w-full object-cover" loop playsinline preload="metadata"></video>
-                                    </div>
-                                    <div class="z-10 bg-gradient-to-t from-background via-background/90 to-transparent p-5 pt-16 space-y-4">
-                                        <div class="flex items-center justify-between">
-                                            <div class="space-y-1">
-                                                <h3 class="text-lg font-heading font-semibold text-card-foreground">Presentation Motion</h3>
-                                                <p class="text-sm font-sans text-muted-foreground">Video showcase demonstrating pacing, storytelling, and motion-led presentation work.</p>
-                                            </div>
-                                            <div class="eq-visualizer hidden flex items-end gap-[3px] h-6 px-2">
-                                                <span class="eq-bar w-[3px] bg-primary rounded-full"></span>
-                                                <span class="eq-bar w-[3px] bg-accent rounded-full" style="animation-delay: 0.15s"></span>
-                                                <span class="eq-bar w-[3px] bg-tertiary rounded-full" style="animation-delay: 0.3s"></span>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center gap-4 bg-secondary/80 backdrop-blur-md px-4 py-2 rounded-lg border border-border">
-                                            <button class="custom-video-play text-sm font-semibold text-primary cursor-pointer transition hover:text-white flex items-center gap-1">
-                                                <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
-                                            </button>
-                                            <div class="flex items-center gap-2 ml-auto">
-                                                <iconify-icon icon="lucide:volume-2" class="text-muted-foreground text-base"></iconify-icon>
-                                                <input type="range" min="0" max="1" step="0.05" value="0.8" class="custom-volume-slider w-20 accent-primary bg-muted rounded-lg appearance-none h-1 cursor-pointer">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                                
-                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                <!-- Card 4[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
                                         <img src="4.jpg" alt="Layout artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
@@ -418,7 +421,9 @@
                                         <p class="text-sm font-sans text-muted-foreground">Editorial composition and visual placement designed for strong first impact.</p>
                                     </div>
                                 </article>
-                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                
+                                <!-- Card 5[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
                                         <img src="513979139_17866609890406922_7422948615827476821_n.jpg" alt="Poster design" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
@@ -428,22 +433,126 @@
                                     </div>
                                 </article>
 
-                                <!-- Thalapathy Vijay Stencil Card -->
-                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md group">
+                                <!-- Card 6[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
                                     <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
                                         <img src="7.jpeg" alt="Thalapathy Vijay Stencil" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
                                     </div>
                                     <div class="space-y-2 p-5">
-                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Thalapathy Vijay Stencil</h3>
-                                        <p class="text-sm font-sans text-muted-foreground">Finely detailed physical composition blending ambient workspace textures and high-contrast digital ink vectors.</p>
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Thalapathy Vijay</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Finely detailed physical composition blending ambient workspace textures.</p>
                                     </div>
                                 </article>
+
+                                <!-- Card 7[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="8.png" alt="Lord Hanuman Stencil Artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Anjaneya ink</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Powerful ink-splatter stencil art capturing dynamic motion and warrior strength.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Card 8[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="9.png" alt="Ram Hanuman Devotional Art" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Divine Bond Stencil</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">High-contrast devotional stencil vector art portraying pure loyalty and reverence.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Card 9[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="10.jpeg" alt="Gojo Satoru Sketch" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Honored One Sketch</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Detailed graphite pencil illustration capturing raw anime awakening energy.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Card 10[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="11.jpeg" alt="Kyojuro Rengoku Pencil Art" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Set Your Heart Ablaze</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Cinematic anime sketch tracking composition framing and fine gradient shading.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Card 11[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="12.jpeg" alt="Ryomen Sukuna Sketch Artwork" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">King of Curses Sketch</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Fine line anatomy and structural tattoo work drawn cleanly on sketch paper.</p>
+                                    </div>
+                                </article>
+
+                                <!-- Card 12[cite: 12] -->
+                                <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md flex-shrink-0 w-[290px] md:w-[340px] snap-start group">
+                                    <div class="overflow-hidden h-64 w-full flex items-center justify-center bg-secondary/30 p-2">
+                                        <img src="13.png" alt="Suriya Typography Stencil Art" class="portfolio-zoom-img h-full w-full object-contain group-hover:scale-105 transition duration-700 ease-out">
+                                    </div>
+                                    <div class="space-y-2 p-5">
+                                        <h3 class="text-lg font-heading font-semibold text-card-foreground">Bury Them with Your Smile</h3>
+                                        <p class="text-sm font-sans text-muted-foreground">Custom portrait stencil tracking hand-drawn typography and message layouts.</p>
+                                    </div>
+                                </article>
+
                             </div>
+
+                            <!-- Right Navigation Arrow[cite: 12] -->
+                            <button id="gallery-right-arrow" class="absolute right-2 top-[40%] -translate-y-1/2 z-30 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur-md text-primary opacity-0 group-hover/gallery:opacity-100 transition-all duration-300 hover:bg-muted hover:text-white cursor-pointer shadow-lg shadow-background/50">
+                                <iconify-icon icon="lucide:chevron-right" class="text-2xl"></iconify-icon>
+                            </button>
+
                         </div>
                     </div>
                 </section>
                 
-                <!-- Music Showcase Section -->
+                <!-- Presentation video placeholder container remains unchanged[cite: 12] -->
+                <section class="mx-auto w-full max-w-7xl px-6 pb-20 lg:px-10 z-10 relative">
+                    <article class="interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-md relative group flex flex-col justify-end min-h-[300px]">
+                        <div class="absolute inset-0 bg-background/20 z-0">
+                            <video src="https://framerusercontent.com/assets/KoOegvSc0AXCzxJx86wDDAky4Kg.mp4" class="h-full w-full object-cover" loop playsinline preload="metadata"></video>
+                        </div>
+                        <div class="z-10 bg-gradient-to-t from-background via-background/90 to-transparent p-5 pt-16 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="space-y-1">
+                                    <h3 class="text-lg font-heading font-semibold text-card-foreground">Presentation Motion</h3>
+                                    <p class="text-sm font-sans text-muted-foreground">Video showcase demonstrating pacing, storytelling, and motion-led presentation work.</p>
+                                </div>
+                                <div class="eq-visualizer hidden flex items-end gap-[3px] h-6 px-2">
+                                    <span class="eq-bar w-[3px] bg-primary rounded-full"></span>
+                                    <span class="eq-bar w-[3px] bg-accent rounded-full" style="animation-delay: 0.15s"></span>
+                                    <span class="eq-bar w-[3px] bg-tertiary rounded-full" style="animation-delay: 0.3s"></span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 bg-secondary/80 backdrop-blur-md px-4 py-2 rounded-lg border border-border">
+                                <button class="custom-video-play text-sm font-semibold text-primary cursor-pointer transition hover:text-white flex items-center gap-1">
+                                    <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
+                                </button>
+                                <div class="flex items-center gap-2 ml-auto">
+                                    <iconify-icon icon="lucide:volume-2" class="text-muted-foreground text-base"></iconify-icon>
+                                    <input type="range" min="0" max="1" step="0.05" value="0.8" class="custom-volume-slider w-20 accent-primary bg-muted rounded-lg appearance-none h-1 cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Music Showcase Section[cite: 12] -->
                 <section class="border-b border-border bg-background/40 relative z-10">
                     <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
                         <div class="max-w-3xl space-y-4">
@@ -453,7 +562,7 @@
                         </div>
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                             
-                            <!-- Track 1 -->
+                            <!-- Track 1[cite: 12] -->
                             <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
                                 <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
                                     <div class="flex items-center gap-3">
@@ -480,7 +589,7 @@
                                 </div>
                             </article>
                             
-                            <!-- Track 2 -->
+                            <!-- Track 2[cite: 12] -->
                             <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
                                 <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
                                     <div class="flex items-center gap-3">
@@ -507,7 +616,7 @@
                                 </div>
                             </article>
                             
-                            <!-- Track 3 -->
+                            <!-- Track 3[cite: 12] -->
                             <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
                                 <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
                                     <div class="flex items-center gap-3">
@@ -534,7 +643,7 @@
                                 </div>
                             </article>
                             
-                            <!-- Track 4 -->
+                            <!-- Track 4[cite: 12] -->
                             <article class="rounded-xl border border-border bg-card p-6 shadow-md flex flex-col justify-between group relative overflow-hidden">
                                 <div class="mb-4 flex items-center justify-between gap-4 relative z-10">
                                     <div class="flex items-center gap-3">
@@ -565,7 +674,7 @@
                     </div>
                 </section>
                 
-                <!-- Methodology Section -->
+                <!-- Methodology Section[cite: 12] -->
                 <section class="border-b border-border bg-background/20 relative z-10">
                     <div class="mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 py-20 lg:px-10 scroll-trigger">
                         <div class="max-w-4xl space-y-4">
@@ -597,7 +706,7 @@
                     </div>
                 </section>
                 
-                <!-- Contact Block Section -->
+                <!-- Contact Block Section[cite: 12] -->
                 <section id="contact" class="border-b border-border bg-background relative z-10">
                     <div class="mx-auto max-w-7xl px-6 py-20 lg:px-10 scroll-trigger">
                         <div class="mx-auto max-w-4xl rounded-[32px] border border-border bg-card px-8 py-12 text-center shadow-md lg:px-12 lg:py-16 glowing-border">
@@ -614,7 +723,7 @@
                 </section>
             </main>
             
-            <!-- Footer -->
+            <!-- Footer[cite: 12] -->
             <footer class="bg-background/80 relative z-10 border-t border-border">
                 <div class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-10 text-sm font-sans text-muted-foreground lg:flex-row lg:items-center lg:justify-between lg:px-10">
                     <p>© JD’s Workshop</p>
@@ -629,7 +738,7 @@
         </div>
     </div>
 
-    <!-- Active Pop-out Overlay Modal Container -->
+    <!-- Active Pop-out Overlay Modal Container[cite: 12] -->
     <div id="lightbox-modal" class="lightbox-overlay">
         <img id="lightbox-target-img" class="lightbox-img" src="" alt="Zoom View">
     </div>
