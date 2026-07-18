@@ -1,5 +1,5 @@
 // Minimalist Contact Page Portfolio — Shared Script
-// Added Immersive Motion Tracking, Visual EQ Automation Hooks & Pop-out Lightbox Modal
+// Added Immersive Motion Tracking, Visual EQ Automation Hooks, Pop-out Lightbox Modal & Arrow Scrollers
 
 document.addEventListener('DOMContentLoaded', function () {
   
@@ -126,21 +126,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
   zoomableImages.forEach(img => {
     img.addEventListener('click', function() {
-      // Set the path target source to match the clicked image asset path
       lightboxImg.src = this.src;
       lightboxImg.alt = this.alt;
-      // Trigger smooth fade and elastic spring transition rules
       lightboxModal.classList.add('active');
     });
   });
 
-  // Click anywhere outside the image frame on the dark backdrop to slide it back down safely
   lightboxModal.addEventListener('click', function() {
     lightboxModal.classList.remove('active');
     setTimeout(() => {
-      lightboxImg.src = ""; // Flush memory stream parameters
+      lightboxImg.src = ""; 
     }, 400);
   });
+
+  // 7. Clickable Arrow Controls for Horizontal Gallery Navigation
+  const gallery = document.getElementById('horizontal-swipe-gallery');
+  const leftArrow = document.getElementById('gallery-left-arrow');
+  const rightArrow = document.getElementById('gallery-right-arrow');
+
+  if (gallery && leftArrow && rightArrow) {
+    // Scroll amount calculation (moves roughly one card width per click)
+    const scrollAmount = 340; 
+
+    rightArrow.addEventListener('click', function() {
+      gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    leftArrow.addEventListener('click', function() {
+      gallery.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+  }
 
 });
 
