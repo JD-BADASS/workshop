@@ -1,120 +1,368 @@
-// Minimalist Contact Page Portfolio — Shared Script
-// Injected Music-Reactive Orbs & Canvas Ink-Bleed Section Smooth Scrollers
+// Minimalist Contact Page Portfolio — Shared Master Script
+// Upgraded: Synchronized Audio Mutual Exclusion Thread (Auto-Pause Overlapping Audio)
 
 document.addEventListener('DOMContentLoaded', function () {
   
-  // 1. NEW: Canvas Ink-Bleed Transition Scroller Engine
+  // ── FEATURE 1: Glitch-Text Decoding Matrix Engine ──
+  const decodeChars = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789#@$&%*+=";
+  function runTextDecryption(element) {
+    const originalText = element.getAttribute('data-text') || element.textContent.trim();
+    if (!element.getAttribute('data-text')) element.setAttribute('data-text', originalText);
+    
+    let iteration = 0;
+    let interval = setInterval(() => {
+      element.innerHTML = originalText.split("").map((letter, index) => {
+        if (index < iteration) return originalText[index];
+        if (letter === " ") return " ";
+        return `<span class="text-primary font-mono">${decodeChars[Math.floor(Math.random() * decodeChars.length)]}</span>`;
+      }).join("");
+      
+      if (iteration >= originalText.length) clearInterval(interval);
+      iteration += 1 / 2;
+    }, 24);
+  }
+
+  const decodeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        runTextDecryption(entry.target);
+        decodeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.decode-trigger').forEach(el => decodeObserver.observe(el));
+
+  // ── FEATURE 2: Neural Expressive UI Video Summarizer Mock Console ──
+  const summaryTrigger = document.getElementById('neural-summary-trigger');
+  const consoleOutput = document.getElementById('neural-console-output');
+  if (summaryTrigger && consoleOutput) {
+    const briefLines = [
+      "Connecting to Bhubaneswar Core Creative nodes...",
+      "Extracting structural parameter layers for JD Workshop...",
+      "► BRIEFING BRIEF INITIALIZED:",
+      "• PPT Presentation Structuring: Custom decks calculated with interactive asset pacing arrays.",
+      "• Custom Digital Vector Art: High-impact stencil inks and étudier portraits constructed locally.",
+      "• Website Deployments: Fully hardware-accelerated dark-mode frames complete with 3D projection layers.",
+      "• General Pricing Matrix: Variable conceptual rates bound directly inside live Instagram DM streams.",
+      "Simulation transmission verified safely. Ready for production commissions."
+    ];
+
+    summaryTrigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      consoleOutput.classList.remove('hidden');
+      consoleOutput.innerHTML = "";
+      let currentLineIdx = 0;
+
+      function printLineStep() {
+        if (currentLineIdx < briefLines.length) {
+          const div = document.createElement('div');
+          div.className = "py-0.5 text-primary tracking-wide font-mono";
+          consoleOutput.appendChild(div);
+          
+          let rawStr = briefLines[currentLineIdx];
+          let charIdx = 0;
+          let textInterval = setInterval(() => {
+            div.textContent += rawStr[charIdx];
+            charIdx++;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            if (charIdx >= rawStr.length) {
+              clearInterval(textInterval);
+              currentLineIdx++;
+              setTimeout(printLineStep, 350);
+            }
+          }, 12);
+        }
+      }
+      printLineStep();
+    });
+  }
+
+  // ── FEATURE 3: Kinetic Drag-to-Throw Gallery Inertia with 10-Sec Auto Reset ──
+  const gallery = document.getElementById('horizontal-swipe-gallery');
+  if (gallery) {
+    let isDown = false; let startX; let scrollLeft;
+    let velocity = 0; let lastX = 0; let lastTime = 0;
+    let inertiaInterval = null; let resetTimeout = null;
+
+    function clearSystemTimers() {
+      if (inertiaInterval) clearInterval(inertiaInterval);
+      if (resetTimeout) clearTimeout(resetTimeout);
+    }
+
+    function initAutoResetTimer() {
+      if (resetTimeout) clearTimeout(resetTimeout);
+      resetTimeout = setTimeout(() => {
+        gallery.scrollTo({ left: 0, behavior: 'smooth' });
+      }, 10000);
+    }
+
+    gallery.addEventListener('mousedown', (e) => {
+      isDown = true; gallery.classList.remove('scroll-smooth');
+      clearSystemTimers();
+      startX = e.pageX - gallery.offsetLeft; scrollLeft = gallery.scrollLeft;
+      lastX = e.pageX; lastTime = performance.now(); velocity = 0;
+    });
+
+    gallery.addEventListener('mouseleave', () => { if (isDown) { isDown = false; initAutoResetTimer(); } });
+    gallery.addEventListener('mouseup', () => {
+      isDown = false;
+      const elapsed = performance.now() - lastTime;
+      if (elapsed > 0 && elapsed < 100) { runMomentumInertia(); } else { initAutoResetTimer(); }
+    });
+
+    gallery.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const walk = (e.pageX - gallery.offsetLeft - startX) * 1.5;
+      gallery.scrollLeft = scrollLeft - walk;
+      const elapsed = performance.now() - lastTime;
+      if (elapsed > 0) velocity = (e.pageX - lastX) / elapsed;
+      lastX = e.pageX; lastTime = performance.now();
+    });
+
+    function runMomentumInertia() {
+      clearSystemTimers();
+      inertiaInterval = setInterval(() => {
+        if (Math.abs(velocity) < 0.05) { clearInterval(inertiaInterval); initAutoResetTimer(); return; }
+        gallery.scrollLeft -= velocity * 16; velocity *= 0.94;
+      }, 16);
+    }
+
+    const leftArrow = document.getElementById('gallery-left-arrow');
+    const rightArrow = document.getElementById('gallery-right-arrow');
+    if (leftArrow && rightArrow) {
+      leftArrow.addEventListener('click', () => { clearSystemTimers(); gallery.scrollTo({ left: gallery.scrollLeft - 340, behavior: 'smooth' }); initAutoResetTimer(); });
+      rightArrow.addEventListener('click', () => { clearSystemTimers(); gallery.scrollTo({ left: gallery.scrollLeft + 340, behavior: 'smooth' }); initAutoResetTimer(); });
+    }
+    initAutoResetTimer();
+  }
+
+  // ── FEATURE 4: 3D "Liquid Metal" Canvas Mercury Trail Pointer ──
+  const mercuryCanvas = document.getElementById('liquid-mercury-canvas');
+  if (mercuryCanvas) {
+    const mCtx = mercuryCanvas.getContext('2d');
+    let points = [];
+    let mouse = { x: -100, y: -100, targetX: -100, targetY: -100 };
+
+    function resizeMercury() { mercuryCanvas.width = window.innerWidth; mercuryCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeMercury); resizeMercury();
+
+    window.addEventListener('mousemove', (e) => {
+      const activeCard = e.target.closest('.interactive-card');
+      if (activeCard) {
+        const r = activeCard.getBoundingClientRect();
+        mouse.targetX = r.left + r.width / 2; mouse.targetY = r.top + r.height / 2;
+      } else {
+        mouse.targetX = e.clientX; mouse.targetY = e.clientY;
+      }
+    });
+
+    function drawMercuryFrame() {
+      mCtx.clearRect(0, 0, mercuryCanvas.width, mercuryCanvas.height);
+      mouse.x += (mouse.targetX - mouse.x) * 0.16;
+      mouse.y += (mouse.targetY - mouse.y) * 0.16;
+      points.push({ x: mouse.x, y: mouse.y });
+      if (points.length > 12) points.shift();
+
+      if (points.length > 1) {
+        mCtx.save(); mCtx.beginPath(); mCtx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i++) { mCtx.lineTo(points[i].x, points[i].y); }
+        mCtx.strokeStyle = '#00e0ff'; mCtx.lineWidth = 6; mCtx.lineCap = 'round'; mCtx.lineJoin = 'round';
+        mCtx.shadowColor = '#ff00c8'; mCtx.shadowBlur = 12; mCtx.stroke(); mCtx.restore();
+      }
+      requestAnimationFrame(drawMercuryFrame);
+    }
+    drawMercuryFrame();
+  }
+
+  // ── FEATURE 5: Interactive Stencil Particle Bleed Engine ──
+  const bleedTargets = document.querySelectorAll('.particle-bleed-target');
+  bleedTargets.forEach(target => {
+    target.addEventListener('mousedown', () => {
+      const img = target.querySelector('img');
+      if (img) { img.style.filter = 'blur(4px) chromatic-aberration'; img.style.transform = 'scale(0.95)'; img.style.transition = 'all 0.2s ease'; }
+    });
+    target.addEventListener('mouseup', () => {
+      const img = target.querySelector('img');
+      if (img) { img.style.filter = ''; img.style.transform = ''; }
+    });
+  });
+
+  // ── FEATURE 6: 3D Interactive Model Centerpiece ──
+  const heroCanvas = document.getElementById('interactive-3d-spline-fallback-canvas');
+  if (heroCanvas) {
+    const ctx3d = heroCanvas.getContext('2d');
+    let rotationX = 0.4; let rotationY = 0.6;
+    let isDragging3D = false; let prevMouseX = 0; let prevMouseY = 0;
+
+    function resizeHeroCanvas() { heroCanvas.width = heroCanvas.parentElement.clientWidth; heroCanvas.height = 320; }
+    window.addEventListener('resize', resizeHeroCanvas); resizeHeroCanvas();
+
+    const nodes = [
+      {x: 0, y: -90, z: 0}, {x: 0, y: 90, z: 0},
+      {x: -70, y: 0, z: -70}, {x: 70, y: 0, z: -70},
+      {x: 70, y: 0, z: 70}, {x: -70, y: 0, z: 70}
+    ];
+    const faces = [[0,2,3], [0,3,4], [0,4,5], [0,5,2], [1,3,2], [1,4,3], [1,5,4], [1,2,5]];
+
+    function render3DObject() {
+      ctx3d.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+      const cx = heroCanvas.width / 2; const cy = heroCanvas.height / 2;
+      const projectedNodes = nodes.map(node => {
+        let x1 = node.x;
+        let y1 = node.y * Math.cos(rotationX) - node.z * Math.sin(rotationX);
+        let z1 = node.y * Math.sin(rotationX) + node.z * Math.cos(rotationX);
+        let x2 = x1 * Math.cos(rotationY) + z1 * Math.sin(rotationY);
+        return { x: cx + x2 * (300 / (300 + z1)), y: cy + y1 * (300 / (300 + z1)) };
+      });
+      faces.forEach((face, idx) => {
+        ctx3d.beginPath(); ctx3d.moveTo(projectedNodes[face[0]].x, projectedNodes[face[0]].y);
+        ctx3d.lineTo(projectedNodes[face[1]].x, projectedNodes[face[1]].y); ctx3d.lineTo(projectedNodes[face[2]].x, projectedNodes[face[2]].y);
+        ctx3d.closePath(); ctx3d.strokeStyle = idx % 2 === 0 ? 'rgba(0, 224, 255, 0.45)' : 'rgba(255, 0, 200, 0.45)';
+        ctx3d.lineWidth = 1.5; ctx3d.stroke(); ctx3d.fillStyle = idx % 2 === 0 ? 'rgba(0, 224, 255, 0.02)' : 'rgba(255, 0, 200, 0.02)'; ctx3d.fill();
+      });
+      if (!isDragging3D) rotationY += 0.006;
+      requestAnimationFrame(render3DObject);
+    }
+    heroCanvas.addEventListener('mousedown', e => { isDragging3D = true; prevMouseX = e.clientX; prevMouseY = e.clientY; });
+    window.addEventListener('mousemove', e => {
+      if (!isDragging3D) return;
+      rotationY += (e.clientX - prevMouseX) * 0.01; rotationX += (e.clientY - prevMouseY) * 0.01;
+      prevMouseX = e.clientX; prevMouseY = e.clientY;
+    });
+    window.addEventListener('mouseup', () => isDragging3D = false); render3DObject();
+  }
+
+  // ── FEATURE 7: Always-On Waving Mountain Terrain Visualizer + Dust ──
+  const mainVCanvas = document.getElementById('cyber-particle-visualizer-canvas');
+  if (mainVCanvas) {
+    const vCtx = mainVCanvas.getContext('2d');
+    let particles = []; let isMusicPlaying = false; let waveOffset = 0;
+
+    function resizeVisualizerCanvas() { mainVCanvas.width = window.innerWidth; mainVCanvas.height = window.innerHeight; }
+    window.addEventListener('resize', resizeVisualizerCanvas); resizeVisualizerCanvas();
+
+    for (let i = 0; i < 65; i++) {
+      particles.push({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, z: Math.random() * 200, speed: 0.2 + Math.random() * 0.4 });
+    }
+
+    function renderSharedVisualizerEngine() {
+      vCtx.clearRect(0, 0, mainVCanvas.width, mainVCanvas.height);
+
+      particles.forEach(p => {
+        p.z -= p.speed;
+        if (p.z <= 0) { p.z = 200; p.x = Math.random() * mainVCanvas.width; p.y = Math.random() * mainVCanvas.height; }
+        let pScale = 150 / (150 + p.z);
+        let px = p.x * pScale + (mainVCanvas.width / 2) * (1 - pScale);
+        let py = p.y * pScale + (mainVCanvas.height / 2) * (1 - pScale);
+        vCtx.beginPath(); vCtx.arc(px, py, Math.max(0.5, 2.5 * pScale), 0, Math.PI * 2);
+        vCtx.fillStyle = `rgba(0, 224, 255, ${0.15 * pScale})`; vCtx.fill();
+      });
+
+      waveOffset += isMusicPlaying ? 0.08 : 0.02;
+      vCtx.save(); vCtx.beginPath();
+      const horizonY = mainVCanvas.height * 0.85; vCtx.moveTo(0, mainVCanvas.height);
+
+      for (let x = 0; x <= mainVCanvas.width; x += 20) {
+        let baseAmp = isMusicPlaying ? 35 : 12;
+        let sineWaves = baseAmp * Math.sin(x * 0.006 + waveOffset) * Math.cos(x * 0.003 - waveOffset);
+        vCtx.lineTo(x, horizonY + sineWaves);
+      }
+      vCtx.lineTo(mainVCanvas.width, mainVCanvas.height); vCtx.closePath();
+      
+      let terrainGlow = vCtx.createLinearGradient(0, horizonY - 40, 0, mainVCanvas.height);
+      terrainGlow.addColorStop(0, isMusicPlaying ? 'rgba(255, 0, 200, 0.15)' : 'rgba(0, 224, 255, 0.06)');
+      terrainGlow.addColorStop(1, 'transparent');
+      
+      vCtx.fillStyle = terrainGlow; vCtx.fill();
+      vCtx.strokeStyle = isMusicPlaying ? 'rgba(255, 0, 200, 0.3)' : 'rgba(0, 224, 255, 0.15)';
+      vCtx.lineWidth = 1.5; vCtx.stroke(); vCtx.restore();
+
+      requestAnimationFrame(renderSharedVisualizerEngine);
+    }
+    renderSharedVisualizerEngine();
+    window.setMusicPlaybackState = function(state) { isMusicPlaying = state; };
+  }
+
+  // ── FEATURE 8: Audio-Peak Glitch Vignette Displacement Shaker ──
+  const appWrapper = document.getElementById('master-app-wrapper');
+  function triggerChromaticGlitchFlash() {
+    if (!appWrapper) return;
+    appWrapper.style.filter = 'hue-rotate(45deg) contrast(1.1) saturate(1.2)';
+    setTimeout(() => { appWrapper.style.filter = ''; }, 60);
+  }
+
+  // ── FEATURE 9: Holographic Foil Card Angle Tracker ──
+  const holoCards = document.querySelectorAll('.holo-foil-card');
+  holoCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+      const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--holo-x', `${xPercent}%`);
+      card.style.setProperty('--holo-y', `${yPercent}%`);
+    });
+  });
+
+  // ── Section Fade and Media Triggers ──
   const inkCanvas = document.getElementById('ink-bleed-canvas');
   const inkCtx = inkCanvas.getContext('2d');
-  let isBleeding = false;
-  let bleedRadius = 0;
-
-  function resizeInkCanvas() {
-    inkCanvas.width = window.innerWidth;
-    inkCanvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeInkCanvas);
-  resizeInkCanvas();
+  let isBleeding = false; let bleedRadius = 0;
+  function resizeInkCanvas() { inkCanvas.width = window.innerWidth; inkCanvas.height = window.innerHeight; }
+  window.addEventListener('resize', resizeInkCanvas); resizeInkCanvas();
 
   function runInkBleedAnimation(targetY) {
-    if (isBleeding) return;
-    isBleeding = true;
-    bleedRadius = 0;
-    
+    if (isBleeding) return; isBleeding = true; bleedRadius = 0;
     const maxRadius = Math.max(inkCanvas.width, inkCanvas.height) * 1.2;
-    const centerX = inkCanvas.width / 2;
-    const centerY = inkCanvas.height / 2;
-
     function drawBleedStep() {
       if (bleedRadius < maxRadius) {
-        bleedRadius += (maxRadius - bleedRadius) * 0.08 + 15; // Elastic ink flow
-        
-        inkCtx.fillStyle = '#07080d';
-        inkCtx.beginPath();
-        // Render stylized jagged ink blot shapes via multi-arc paths
-        for (let i = 0; i < 8; i++) {
-          const angle = (i * Math.PI) / 4;
-          const currentR = bleedRadius * (1 + Math.sin(angle * 3) * 0.15);
-          inkCtx.arc(centerX, centerY, currentR, 0, Math.PI * 2);
-        }
-        inkCtx.fill();
-        
-        requestAnimationFrame(drawBleedStep);
-      } else {
-        // Once screen is fully blanketed by ink veil, scroll view and fade back down cleanly
-        window.scrollTo({ top: targetY, behavior: 'instant' });
-        inkCtx.clearRect(0, 0, inkCanvas.width, inkCanvas.height);
-        isBleeding = false;
-      }
+        bleedRadius += (maxRadius - bleedRadius) * 0.08 + 15;
+        inkCtx.fillStyle = '#07080d'; inkCtx.beginPath();
+        for (let i = 0; i < 8; i++) { inkCtx.arc(inkCanvas.width/2, inkCanvas.height/2, bleedRadius * (1 + Math.sin((i*Math.PI)/4 * 3) * 0.15), 0, Math.PI * 2); }
+        inkCtx.fill(); requestAnimationFrame(drawBleedStep);
+      } else { window.scrollTo({ top: targetY, behavior: 'instant' }); inkCtx.clearRect(0, 0, inkCanvas.width, inkCanvas.height); isBleeding = false; }
     }
     drawBleedStep();
   }
 
-  // Intercept trigger clicks to pipe them into the ink transition thread safely
   document.querySelectorAll('.ink-trigger').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href.startsWith('#')) {
         const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          const targetY = target.getBoundingClientRect().top + window.scrollY - 70;
-          runInkBleedAnimation(targetY);
-        }
+        if (target) { e.preventDefault(); runInkBleedAnimation(target.getBoundingClientRect().top + window.scrollY - 70); }
       }
     });
   });
 
-  // 2. Prevent default submission behaviors
-  document.querySelectorAll('form').forEach(function (form) {
-    form.addEventListener('submit', function (e) { e.preventDefault(); });
+  const tiltCards = document.querySelectorAll('.tilt-3d-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const tiltX = ((rect.height / 2) - (e.clientY - rect.top)) / 14;
+      const tiltY = ((e.clientX - rect.left) - (rect.width / 2)) / 14;
+      card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'; });
   });
 
-  // 3. Immersive Scroll Trigger Reveal Animation
   const revealSections = document.querySelectorAll('.scroll-trigger');
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: 0.15 });
-
   revealSections.forEach(section => revealObserver.observe(section));
-  setTimeout(() => {
-    revealSections.forEach(s => s.classList.add('visible'));
-  }, 400);
+  setTimeout(() => { revealSections.forEach(s => s.classList.add('visible')); }, 400);
 
-  // 4. Magnet Mouse Button Tracking Animation
-  const magnetButtons = document.querySelectorAll('.magnet-btn');
-  magnetButtons.forEach(btn => {
-    btn.addEventListener('mousemove', function(e) {
-      const position = btn.getBoundingClientRect();
-      const x = e.clientX - position.left - position.width / 2;
-      const y = e.clientY - position.top - position.height / 2;
-      btn.style.transform = `translate(${x * 0.35}px, ${y * 0.45}px) scale(1.04)`;
-    });
-    btn.addEventListener('mouseleave', function() {
-      btn.style.transform = '';
-    });
-  });
-
-  // 5. Custom Secured Media Controller Logic with NEW: Music-Reactive Orb Links
-  const mediaContainers = document.querySelectorAll('article');
-  const rOrb1 = document.getElementById('reactive-orb-1');
-  const rOrb2 = document.getElementById('reactive-orb-2');
-  
-  mediaContainers.forEach(container => {
+  // ── FIXED: Synchronized Audio Exclusion Framework Node Loop ──
+  document.querySelectorAll('article').forEach(container => {
     const video = container.querySelector('video');
     const playBtn = container.querySelector('.custom-video-play');
     const volumeSlider = container.querySelector('.custom-volume-slider');
     const eqVisualizer = container.querySelector('.eq-visualizer');
     const fullscreenBtn = container.querySelector('.custom-fullscreen-btn');
-    
     if (!video) return;
 
-    video.controls = false;
-    video.removeAttribute('controls');
+    video.controls = false; video.removeAttribute('controls');
     video.setAttribute('controlsList', 'nodownload noplaybackspeed');
     video.disablePictureInPicture = true;
     video.addEventListener('contextmenu', e => e.preventDefault());
@@ -122,23 +370,45 @@ document.addEventListener('DOMContentLoaded', function () {
     if (playBtn) {
       const playIcon = playBtn.querySelector('iconify-icon');
       const label = playBtn.querySelector('.label');
-
       playBtn.addEventListener('click', function (e) {
         e.preventDefault();
         
         if (video.paused || video.ended) {
+          // MUTUAL EXCLUSION: Global trace sweep to instantly shut down overlapping player streams
+          document.querySelectorAll('article').forEach(otherContainer => {
+            const otherVideo = otherContainer.querySelector('video');
+            const otherPlayBtn = otherContainer.querySelector('.custom-video-play');
+            const otherEq = otherContainer.querySelector('.eq-visualizer');
+            
+            if (otherVideo && otherVideo !== video && !otherVideo.paused) {
+              otherVideo.pause(); // Kill stream layout parameters
+              if (otherPlayBtn) {
+                const oIcon = otherPlayBtn.querySelector('iconify-icon');
+                const oLabel = otherPlayBtn.querySelector('.label');
+                if (oIcon) oIcon.setAttribute('icon', 'lucide:play');
+                if (oLabel) oLabel.textContent = 'Play';
+              }
+              if (otherEq) otherEq.classList.add('hidden');
+            }
+          });
+
+          // Reset generic global intervals from prior runs to keep timing gates accurate
+          if (window.activeGlitchInterval) clearInterval(window.activeGlitchInterval);
+
           video.play().then(() => {
             if (playIcon) playIcon.setAttribute('icon', 'lucide:pause');
             if (label) label.textContent = 'Pause';
             if (eqVisualizer) eqVisualizer.classList.remove('hidden');
             
-            // Toggle reactive pulsing layout if chosen track is an audio track file stream
             if (!container.classList.contains('interactive-card')) {
               if (rOrb1) rOrb1.classList.add('orb-pulse-fast');
               if (rOrb2) rOrb2.classList.add('orb-pulse-fast');
+              if (window.setMusicPlaybackState) window.setMusicPlaybackState(true);
+              
+              triggerChromaticGlitchFlash();
+              window.activeGlitchInterval = setInterval(triggerChromaticGlitchFlash, 1200);
             }
-          }).catch(err => console.log("Playback safely handled:", err));
-          
+          });
         } else {
           video.pause();
           if (playIcon) playIcon.setAttribute('icon', 'lucide:play');
@@ -147,65 +417,17 @@ document.addEventListener('DOMContentLoaded', function () {
           
           if (rOrb1) rOrb1.classList.remove('orb-pulse-fast');
           if (rOrb2) rOrb2.classList.remove('orb-pulse-fast');
+          if (window.setMusicPlaybackState) window.setMusicPlaybackState(false);
+          if (window.activeGlitchInterval) clearInterval(window.activeGlitchInterval);
         }
       });
     }
-
-    if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (video.requestFullscreen) { video.requestFullscreen(); }
-        else if (video.webkitRequestFullscreen) { video.webkitRequestFullscreen(); }
-      });
-    }
-
-    if (volumeSlider) {
-      video.volume = volumeSlider.value;
-      volumeSlider.addEventListener('input', function () {
-        video.volume = this.value;
-        video.muted = (parseFloat(this.value) === 0);
-      });
-    }
+    if (fullscreenBtn) fullscreenBtn.addEventListener('click', (e) => { e.preventDefault(); if (video.requestFullscreen) video.requestFullscreen(); });
+    if (volumeSlider) { video.volume = volumeSlider.value; volumeSlider.addEventListener('input', function() { video.volume = this.value; video.muted = (parseFloat(this.value) === 0); }); }
   });
 
-  // 6. Immersive Image Pop-out Lightbox Engine Implementation
   const lightboxModal = document.getElementById('lightbox-modal');
   const lightboxImg = document.getElementById('lightbox-target-img');
-  const zoomableImages = document.querySelectorAll('.portfolio-zoom-img');
-
-  zoomableImages.forEach(img => {
-    img.addEventListener('click', function() {
-      lightboxImg.src = this.src;
-      lightboxImg.alt = this.alt;
-      lightboxModal.classList.add('active');
-    });
-  });
-
-  lightboxModal.addEventListener('click', function() {
-    lightboxModal.classList.remove('active');
-    setTimeout(() => { lightboxImg.src = ""; }, 400);
-  });
-
-  // 7. Clickable Arrow Controls for Horizontal Gallery Navigation
-  const gallery = document.getElementById('horizontal-swipe-gallery');
-  const leftArrow = document.getElementById('gallery-left-arrow');
-  const rightArrow = document.getElementById('gallery-right-arrow');
-
-  if (gallery && leftArrow && rightArrow) {
-    const scrollAmount = 340; 
-    rightArrow.addEventListener('click', function() {
-      gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
-    leftArrow.addEventListener('click', function() {
-      gallery.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
-  }
-
+  document.querySelectorAll('.portfolio-zoom-img').forEach(img => { img.addEventListener('click', function() { lightboxImg.src = this.src; lightboxModal.classList.add('active'); }); });
+  lightboxModal.addEventListener('click', () => { lightboxModal.classList.remove('active'); setTimeout(() => { lightboxImg.src = ""; }, 400); });
 });
-
-window.UIUtils = {
-  toggleElement: function (selector) {
-    var el = document.querySelector(selector);
-    if (el) el.style.display = el.style.display === 'none' ? '' : 'none';
-  },
-};
