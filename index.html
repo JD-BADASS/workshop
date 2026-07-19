@@ -362,13 +362,13 @@
       #cyber-particle-visualizer-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
       #liquid-mercury-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 9998; pointer-events: none; }
       
-      /* ── NEW: Persistent Neon Sketchpad Layer Style ── */
+      /* ── Persistent Neon Sketchpad Layer Style ── */
       #neon-sketchpad-canvas {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 5; /* Flows dynamically between backgrounds and text blocks */
+        z-index: 5;
         pointer-events: auto; 
       }
     </style>
@@ -408,7 +408,7 @@
                 <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
                     <a href="#home" class="text-base font-heading font-semibold text-foreground tracking-wider group">
                         JD & LEO DAS's <span class="text-primary group-hover:text-accent transition-colors duration-300">Workshop</span>
-
+                    </a>
                     <nav class="flex items-center gap-8 text-sm font-sans text-foreground">
                         <a href="#services" class="ink-trigger decode-trigger transition nav-link hover:text-primary" data-text="Services">Services</a>
                         <a href="#work" class="ink-trigger decode-trigger transition nav-link hover:text-primary" data-text="Work">Work</a>
@@ -600,7 +600,7 @@
                                     </div>
                                     <div class="space-y-2 p-5">
                                         <h3 class="text-lg font-heading font-semibold text-card-foreground">Poster Piece</h3>
-                                        <p class="text-sm font-sans text-muted-foreground">Poster-driven visual concept with layered motion-inspired energy.</p>
+                                        <p class="text-sm font-sans text-muted-foreground">Poster-driven visual concept with led motion-inspired energy.</p>
                                     </div>
                                 </article>
 
@@ -696,7 +696,7 @@
                             <!-- Presentation 1 Container (5.mp4) -->
                             <article class="holo-foil-card tilt-3d-card interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-lg relative group flex flex-col justify-end min-h-[420px]">
                                 <div class="absolute inset-0 bg-background/20 z-0">
-                                    <video src="5.mp4" class="h-full w-full object-cover" loop playsinline muted autoplay preload="metadata"></video>
+                                    <video src="5.mp4" class="h-full w-full object-cover" loop playsinline muted preload="metadata"></video>
                                     <div class="absolute top-4 left-4 pointer-events-none select-none text-white/20 text-xs font-mono tracking-widest bg-black/20 backdrop-blur-[1px] px-2 py-1 rounded border border-white/5">© JD's Workshop</div>
                                 </div>
                                 <div class="z-10 bg-gradient-to-t from-background via-background/90 to-transparent p-5 pt-16 space-y-4 tilt-inner-depth">
@@ -708,7 +708,7 @@
                                     </div>
                                     <div class="flex items-center gap-4 bg-secondary/80 backdrop-blur-md px-4 py-2 rounded-lg border border-border">
                                         <button class="custom-video-play text-sm font-semibold text-primary cursor-pointer transition hover:text-white flex items-center gap-1">
-                                            <iconify-icon icon="lucide:pause" class="play-icon"></iconify-icon> <span class="label">Pause</span>
+                                            <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
                                         </button>
                                         <button class="custom-fullscreen-btn text-sm font-semibold text-muted-foreground cursor-pointer transition hover:text-white flex items-center gap-1 ml-auto">
                                             <iconify-icon icon="lucide:maximize" class="text-base"></iconify-icon> <span>Fullscreen</span>
@@ -720,7 +720,7 @@
                             <!-- Presentation 2 Container (14.mp4) -->
                             <article class="holo-foil-card tilt-3d-card interactive-card overflow-hidden rounded-xl border border-border bg-card shadow-lg relative group flex flex-col justify-end min-h-[420px]">
                                 <div class="absolute inset-0 bg-background/20 z-0">
-                                    <video src="14.mp4" class="h-full w-full object-cover" loop playsinline muted autoplay preload="metadata"></video>
+                                    <video src="14.mp4" class="h-full w-full object-cover" loop playsinline muted preload="metadata"></video>
                                     <div class="absolute top-4 left-4 pointer-events-none select-none text-white/20 text-xs font-mono tracking-widest bg-black/20 backdrop-blur-[1px] px-2 py-1 rounded border border-white/5">© JD's Workshop</div>
                                 </div>
                                 <div class="z-10 bg-gradient-to-t from-background via-background/90 to-transparent p-5 pt-16 space-y-4 tilt-inner-depth">
@@ -732,7 +732,7 @@
                                     </div>
                                     <div class="flex items-center gap-4 bg-secondary/80 backdrop-blur-md px-4 py-2 rounded-lg border border-border">
                                         <button class="custom-video-play text-sm font-semibold text-primary cursor-pointer transition hover:text-white flex items-center gap-1">
-                                            <iconify-icon icon="lucide:pause" class="play-icon"></iconify-icon> <span class="label">Pause</span>
+                                            <iconify-icon icon="lucide:play" class="play-icon"></iconify-icon> <span class="label">Play</span>
                                         </button>
                                         <button class="custom-fullscreen-btn text-sm font-semibold text-muted-foreground cursor-pointer transition hover:text-white flex items-center gap-1 ml-auto">
                                             <iconify-icon icon="lucide:maximize" class="text-base"></iconify-icon> <span>Fullscreen</span>
